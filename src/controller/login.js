@@ -10,7 +10,8 @@ const login = (req,res,next)=>{
     })
         .then(data=>{
             if(data){
-                res.json({status: 'success', message: 'loginned!'})
+                const token = jwt.sign(data.id, 'nhatjt')
+                res.json({status: 'success', message: 'loginned!', token: token})
                 return;
             }
             res.json({status: 'failure', message:'you should register!'})
@@ -21,22 +22,24 @@ const login = (req,res,next)=>{
 }
 
 const register = (req,res, next)=>{
-    user.findOne({
+    users.findOne({
         username: req.body.username
     })
         .then((data)=>{
             if(data){
                 res.json({status: 'failure', message: 'choose other name!'})
                 return
-            }
-            user.create({
+            }   
+            users.create({
                 username: req.body.username,
                 password: req.body.password
             })
             .then(()=>{
                 res.json({status: 'success', message: 'registed'})
             })
-            
+            .catch(err=>{
+                res.status(400).json('something wrong with server!')
+            })
             
         })
 }
