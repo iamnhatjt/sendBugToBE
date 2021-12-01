@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const createLesson = (req,res,next)=>{
     lesson.create({
-        for:     jwt.verify(req.cookies.token, 'nhatjt') || null
+        for:     jwt.verify(req.body.token, 'nhatjt') || null
 ,
         label: req.body.label,
         data: req.body.data
@@ -20,7 +20,7 @@ const createLesson = (req,res,next)=>{
 
 const deleteLesson = (req,res,next)=>{
     lesson.findOneAndDelete({
-        for:    jwt.verify(req.cookies.token, 'nhatjt') || null
+        for:    jwt.verify(req.body.token, 'nhatjt') || null
 ,
         label: req.body.label,
     })
@@ -29,7 +29,7 @@ const deleteLesson = (req,res,next)=>{
 
 const updateLesson = (req,res,next) => {
     lesson.findOneAndUpdate({
-        for: jwt.verify(req.cookies.token, 'nhatjt') || null
+        for: jwt.verify(req.body.token, 'nhatjt') || null
 ,
         label: req.body.data
     },{
@@ -40,7 +40,7 @@ const updateLesson = (req,res,next) => {
 
 const getData = (req,res,next)=>{
     lesson.find({
-        for: jwt.verify(req.cookies.token, 'nhatjt'),
+        for: jwt.verify(req.body.token, 'nhatjt'),
     })
     .then(data=>{
         res.json({status: 'success', data: data})

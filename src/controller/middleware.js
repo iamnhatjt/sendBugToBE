@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const users = require('../model/users')
 
 const middleWare = (req,res,next)=>{
-    if(req.cookies.token){
+    if(req.body.token){
         users.findOne({
-            id: jwt.verify(req.cookies.token, 'nhatjt')
+            id: jwt.verify(req.body.token, 'nhatjt')
         })
         .then(data=>{
             if(data){

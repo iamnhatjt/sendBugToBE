@@ -9,7 +9,7 @@ Router.delete('/deletelesson',(req,res,next)=>{middleWare(req,res,next)}, (req,r
 
 Router.put('/updatelesson',(req,res,next)=>{middleWare(req,res,next)}, (req,res,next)=>{controldata.updateLesson(req,res,next)})
 
-Router.get('/get',(req,res,next)=>{middleWare(req,res,next)}, (req,res,next)=>{controldata.getData(req,res,next)})
+Router.post('/get',(req,res,next)=>{middleWare(req,res,next)}, (req,res,next)=>{controldata.getData(req,res,next)})
 
 
 module.exports = Router
