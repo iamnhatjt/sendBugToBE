@@ -17,7 +17,7 @@ const controldata = require('./src/router/controldata')
 // middle ware
 var corsOptions = {
     origin: 'http://localhost:3000',
-    credentials: true,
+    credentials: "same-origin",
 }
 
 app.use(cookieParser())
