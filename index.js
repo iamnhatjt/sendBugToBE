@@ -16,7 +16,7 @@ const controldata = require('./src/router/controldata')
 
 // middle ware
 var corsOptions = {
-    origin: 'https://wlgce.csb.app',
+    origin: 'http://localhost:3000',
     credentials: true,
 }
 
